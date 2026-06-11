@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prem Kumar Thanneru — Actor · Director</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --ink: #0a0a0a;
+    --paper: #f7f4ee;
+    --ash: #1a1a1a;
+    --ember: #c8702a;
+    --dusk: #8a7d6b;
+    --silver: #d4cfc7;
+    --type-display: 'Cormorant Garamond', serif;
+    --type-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--type-body);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 4rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.9), transparent);
+    backdrop-filter: blur(2px);
+  }
+  .nav-logo {
+    font-family: var(--type-display);
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--paper);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--silver);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--ember); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: brightness(0.55) contrast(1.1);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 30%,
+      rgba(10,10,10,0.4) 60%,
+      rgba(10,10,10,0.95) 100%
+    );
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 4rem 5rem;
+    max-width: 900px;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+  }
+  .hero-name {
+    font-family: var(--type-display);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 0.95;
+    color: var(--paper);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--silver);
+  }
+  .hero-tagline {
+    font-family: var(--type-display);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dusk);
+    max-width: 480px;
+    line-height: 1.5;
+  }
+  .hero-scroll {
+    position: absolute; bottom: 2rem; right: 4rem; z-index: 2;
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--dusk);
+    writing-mode: vertical-rl;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-scroll::after {
+    content: '';
+    display: block; width: 1px; height: 60px;
+    background: var(--ember);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.3); opacity: 0.4; }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 3.5rem;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 120px;
+    height: 1px; background: var(--ember); opacity: 0.5;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    padding-left: 4rem; padding-right: 4rem;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img {
+    width: 100%; aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .about-img-frame {
+    position: absolute;
+    top: 1.5rem; left: 1.5rem;
+    right: -1.5rem; bottom: -1.5rem;
+    border: 1px solid var(--ember);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .about-text h2 {
+    font-family: var(--type-display);
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: var(--paper);
+  }
+  .about-text h2 em { font-style: italic; color: var(--dusk); }
+  .about-text p {
+    color: var(--dusk);
+    font-size: 0.9rem;
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; margin-top: 3rem;
+    border-top: 1px solid rgba(200,190,180,0.15);
+    padding-top: 2.5rem;
+  }
+  .stat-num {
+    font-family: var(--type-display);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--paper);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dusk);
+    margin-top: 0.4rem;
+  }
+
+  /* ── VITALS ── */
+  .vitals-strip {
+    background: var(--ash);
+    padding: 2.5rem 4rem;
+    display: flex; gap: 4rem; align-items: center;
+    border-top: 1px solid rgba(200,190,180,0.08);
+    border-bottom: 1px solid rgba(200,190,180,0.08);
+    overflow-x: auto;
+  }
+  .vital {
+    text-align: center; white-space: nowrap; flex-shrink: 0;
+  }
+  .vital-value {
+    font-family: var(--type-display); font-size: 1.4rem;
+    font-weight: 300; color: var(--paper);
+  }
+  .vital-key {
+    font-size: 0.6rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--dusk); margin-top: 0.3rem;
+  }
+  .vital-divider { width: 1px; height: 40px; background: rgba(200,190,180,0.15); flex-shrink: 0; }
+
+  /* ── GALLERY ── */
+  #gallery { background: #080808; padding: 7rem 4rem; }
+  .gallery-masonry {
+    columns: 3; column-gap: 1.2rem;
+  }
+  .gallery-item {
+    break-inside: avoid; margin-bottom: 1.2rem;
+    overflow: hidden; position: relative;
+    cursor: pointer;
+  }
+  .gallery-item img {
+    width: 100%; display: block;
+    transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s;
+    filter: brightness(0.9);
+  }
+  .gallery-item:hover img {
+    transform: scale(1.04); filter: brightness(1.05);
+  }
+  .gallery-item::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .gallery-item:hover::after { opacity: 1; }
+
+  /* ── FILMOGRAPHY ── */
+  #filmography { background: var(--ink); }
+  .films-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  }
+  .film-card {
+    background: var(--ash);
+    padding: 3rem 2.5rem;
+    border-top: 2px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .film-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--ember);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .film-card:hover::before { transform: scaleX(1); }
+  .film-card:hover { background: #1f1f1f; }
+  .film-year {
+    font-size: 0.65rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--ember);
+    margin-bottom: 1rem;
+  }
+  .film-title {
+    font-family: var(--type-display);
+    font-size: 1.8rem; font-weight: 300;
+    color: var(--paper); margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .film-roles {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .role-tag {
+    font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    border: 1px solid rgba(200,190,180,0.25); padding: 0.3rem 0.8rem;
+    color: var(--dusk);
+  }
+  .film-link {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ember); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: gap 0.3s;
+  }
+  .film-link:hover { gap: 1rem; }
+  .film-link::after { content: '→'; }
+
+  /* ── SKILLS ── */
+  #skills { background: #050505; }
+  .skills-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+  }
+  .skills-heading {
+    font-family: var(--type-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300; line-height: 1.2; color: var(--paper);
+  }
+  .skills-heading em { font-style: italic; color: var(--dusk); }
+  .skill-categories { display: flex; flex-direction: column; gap: 2.5rem; }
+  .skill-cat-name {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--ember); margin-bottom: 1rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .skill-tag {
+    font-size: 0.72rem; font-weight: 300;
+    background: rgba(200,190,180,0.06);
+    border: 1px solid rgba(200,190,180,0.12);
+    padding: 0.45rem 1rem; color: var(--dusk);
+    transition: all 0.3s;
+    letter-spacing: 0.05em;
+  }
+  .skill-tag:hover { background: rgba(200,112,42,0.1); border-color: var(--ember); color: var(--paper); }
+
+  /* ── LANGUAGES ── */
+  .lang-row { display: flex; gap: 2rem; margin-top: 2.5rem; }
+  .lang-item { display: flex; flex-direction: column; gap: 0.3rem; }
+  .lang-name {
+    font-family: var(--type-display); font-size: 1.2rem; font-weight: 300;
+    color: var(--paper);
+  }
+  .lang-level { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dusk); }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--ash);
+    text-align: center;
+    padding: 8rem 4rem;
+  }
+  .contact-heading {
+    font-family: var(--type-display);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300; line-height: 1; color: var(--paper);
+    margin-bottom: 2rem;
+  }
+  .contact-heading em { font-style: italic; color: var(--dusk); }
+  .contact-sub {
+    font-size: 0.85rem; color: var(--dusk); margin-bottom: 3.5rem;
+    font-weight: 300; max-width: 500px; margin-left: auto; margin-right: auto;
+  }
+  .contact-links {
+    display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+  }
+  .contact-link {
+    color: var(--paper); text-decoration: none;
+    font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    transition: color 0.3s;
+  }
+  .contact-link:hover { color: var(--ember); }
+  .contact-link-icon { font-size: 1.5rem; }
+  .contact-link-label { font-size: 0.6rem; letter-spacing: 0.25em; color: var(--dusk); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(200,190,180,0.08);
+  }
+  .footer-name {
+    font-family: var(--type-display); font-size: 0.95rem;
+    font-weight: 300; color: var(--dusk); letter-spacing: 0.1em;
+  }
+  .footer-copy { font-size: 0.65rem; color: rgba(138,125,107,0.5); letter-spacing: 0.1em; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,0.95); align-items: center; justify-content: center;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+  .lightbox-close {
+    position: absolute; top: 2rem; right: 2.5rem;
+    font-size: 2rem; cursor: pointer; color: var(--dusk);
+    transition: color 0.2s; line-height: 1; background: none; border: none;
+  }
+  .lightbox-close:hover { color: var(--paper); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.5rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 5rem 2rem; }
+    .hero-content { padding: 0 2rem 4rem; }
+    #about { grid-template-columns: 1fr; gap: 3rem; }
+    .films-grid { grid-template-columns: 1fr; gap: 2px; }
+    .skills-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .gallery-masonry { columns: 2; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .vitals-strip { gap: 2rem; }
+  }
+  @media (max-width: 600px) {
+    .gallery-masonry { columns: 1; }
+    nav { padding: 1rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">P K T</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#filmography">Filmography</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-img" src="images/img01.jpg" alt="Prem Kumar Thanneru">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Actor · Director · Screenwriter</div>
+    <h1 class="hero-name">Prem Kumar<br><em>Thanneru</em></h1>
+    <p class="hero-tagline">Bringing compelling stories to life through cinematic vision and fearless performance.</p>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- VITALS STRIP -->
+<div class="vitals-strip">
+  <div class="vital">
+    <div class="vital-value">5′8″</div>
+    <div class="vital-key">Height</div>
+  </div>
+  <div class="vital-divider"></div>
+  <div class="vital">
+    <div class="vital-value">24</div>
+    <div class="vital-key">Age</div>
+  </div>
+  <div class="vital-divider"></div>
+  <div class="vital">
+    <div class="vital-value">Black</div>
+    <div class="vital-key">Eyes</div>
+  </div>
+  <div class="vital-divider"></div>
+  <div class="vital">
+    <div class="vital-value">Black Brown</div>
+    <div class="vital-key">Hair</div>
+  </div>
+  <div class="vital-divider"></div>
+  <div class="vital">
+    <div class="vital-value">Telugu</div>
+    <div class="vital-key">Native Language</div>
+  </div>
+  <div class="vital-divider"></div>
+  <div class="vital">
+    <div class="vital-value">Hyderabad</div>
+    <div class="vital-key">Based In</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img-wrap">
+    <img class="about-img" src="images/img02.jpg" alt="Prem Kumar Thanneru">
+    <div class="about-img-frame"></div>
+  </div>
+  <div class="about-text">
+    <div class="section-label">About</div>
+    <h2>Craft rooted in<br><em>authentic emotion</em></h2>
+    <p>A creative force across every dimension of film — Prem Kumar Thanneru is an actor, director, screenwriter, and editor with over 5 years in the industry. His work is defined by psychological depth, precise visual instinct, and an unwavering commitment to the story.</p>
+    <p>From developing characters from scratch to orchestrating complete productions, Prem brings a rare dual intelligence: the vulnerability of a performer and the structural rigor of a director. His films have explored themes of grace, morality, and human contradiction — always through a cinematic lens.</p>
+    <p>Trained in AI & Data Science alongside his filmmaking career, he brings a uniquely analytical creative mind to every project he touches.</p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Films</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Roles per Film</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-label">Gallery</div>
+  <div class="gallery-masonry">
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/img03.jpg" alt="Prem Kumar Thanneru">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/img04.jpg" alt="Prem Kumar Thanneru">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/img05.jpg" alt="Prem Kumar Thanneru">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/img06.jpg" alt="Prem Kumar Thanneru">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/img07.jpg" alt="Prem Kumar Thanneru">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/img08.jpg" alt="Prem Kumar Thanneru">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/img09.jpg" alt="Prem Kumar Thanneru">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/img10.jpg" alt="Prem Kumar Thanneru">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/img11.jpg" alt="Prem Kumar Thanneru">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/img12.jpg" alt="Prem Kumar Thanneru">
+    </div>
+  </div>
+</section>
+
+<!-- FILMOGRAPHY -->
+<section id="filmography">
+  <div class="section-label">Selected Filmography</div>
+  <div class="films-grid">
+    <div class="film-card">
+      <div class="film-year">2024</div>
+      <div class="film-title">Forsaken Grace</div>
+      <div class="film-roles">
+        <span class="role-tag">Lead Actor</span>
+        <span class="role-tag">Editor</span>
+      </div>
+      <p style="color:var(--dusk);font-size:0.82rem;line-height:1.7;margin-bottom:1.5rem;font-weight:300;">A story of moral descent and redemption — Prem's debut lead role showcased his ability to carry emotional arcs across the full arc of a short film narrative.</p>
+      <a class="film-link" href="https://youtu.be/98FPJzON2X0?si=X0fQ52QUo-l1Wa4J" target="_blank">Watch Film</a>
+    </div>
+    <div class="film-card">
+      <div class="film-year">2025</div>
+      <div class="film-title">Adarsham</div>
+      <div class="film-roles">
+        <span class="role-tag">Lead Actor</span>
+        <span class="role-tag">Screenwriter</span>
+        <span class="role-tag">Editor</span>
+      </div>
+      <p style="color:var(--dusk);font-size:0.82rem;line-height:1.7;margin-bottom:1.5rem;font-weight:300;">A landmark project where Prem wore three hats simultaneously — writing the original screenplay, embodying the central character, and cutting the final edit with precision.</p>
+      <a class="film-link" href="https://drive.google.com/file/d/1MUdlHqO5I8GbBivNUkBb_NZcCQ6-hsIk/view?usp=drive_link" target="_blank">Watch Film</a>
+    </div>
+    <div class="film-card">
+      <div class="film-year">2026</div>
+      <div class="film-title">The Forbidden Fruit</div>
+      <div class="film-roles">
+        <span class="role-tag">Screenwriter</span>
+        <span class="role-tag">Editor</span>
+      </div>
+      <p style="color:var(--dusk);font-size:0.82rem;line-height:1.7;margin-bottom:1.5rem;font-weight:300;">His most recent work — a thematically ambitious piece exploring desire, consequence, and choice. Prem's editorial touch defines the rhythm and tension of every scene.</p>
+      <a class="film-link" href="https://youtu.be/rtN-S-YmZmc?si=ZK2XEYlZP3mQpcly" target="_blank">Watch Film</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-layout">
+    <div>
+      <div class="section-label">Expertise</div>
+      <h2 class="skills-heading">Every frame,<br>every <em>word</em>,<br>every cut.</h2>
+      <div class="lang-row">
+        <div class="lang-item">
+          <div class="lang-name">Telugu</div>
+          <div class="lang-level">Native</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">English</div>
+          <div class="lang-level">Professional</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Hindi</div>
+          <div class="lang-level">Conversational</div>
+        </div>
+      </div>
+    </div>
+    <div class="skill-categories">
+      <div>
+        <div class="skill-cat-name">Performance</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Acting for Film & Digital Media</span>
+          <span class="skill-tag">Character Development</span>
+          <span class="skill-tag">Camera Acting Techniques</span>
+          <span class="skill-tag">Scene Construction</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-name">Direction & Writing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Film Direction</span>
+          <span class="skill-tag">Visual Storytelling</span>
+          <span class="skill-tag">Screenwriting</span>
+          <span class="skill-tag">Script Analysis</span>
+          <span class="skill-tag">Storyboarding</span>
+          <span class="skill-tag">Shot Planning</span>
+          <span class="skill-tag">Dialogue Writing</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-name">Post-Production</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Adobe Premiere Pro</span>
+          <span class="skill-tag">DaVinci Resolve</span>
+          <span class="skill-tag">Adobe After Effects</span>
+          <span class="skill-tag">Color Grading</span>
+          <span class="skill-tag">Sound Design</span>
+          <span class="skill-tag">Narrative Editing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="contact-heading">Let's make<br><em>something real.</em></h2>
+  <p class="contact-sub">Open to acting roles, directorial projects, collaborative screenwriting, and creative partnerships.</p>
+  <div class="contact-links">
+    <a href="tel:+919392569121" class="contact-link">
+      <span class="contact-link-icon">📞</span>
+      +91 93925 69121
+      <span class="contact-link-label">Call</span>
+    </a>
+    <a href="mailto:prem64748494@gmail.com" class="contact-link">
+      <span class="contact-link-icon">✉️</span>
+      prem64748494@gmail.com
+      <span class="contact-link-label">Email</span>
+    </a>
+    <a href="https://drive.google.com/file/d/1MUdlHqO5I8GbBivNUkBb_NZcCQ6-hsIk/view?usp=drive_link" target="_blank" class="contact-link">
+      <span class="contact-link-icon">🎬</span>
+      Latest Film
+      <span class="contact-link-label">YouTube</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Prem Kumar Thanneru</div>
+  <div class="footer-copy">Actor · Director · Screenwriter · Editor &nbsp;|&nbsp; Hyderabad, India &nbsp;|&nbsp; © 2026</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+
+  // Subtle scroll-triggered fade
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.film-card, .skill-categories > div').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
